@@ -4,9 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AppRom</title>
+    <link rel="icon" type="image/png" href="https://github.com/coliveramispireta/imagenes/blob/main/LOGOappv2.png?raw=true">
+    <title>APPROM - REGISTRO DE RECEPCIÓN Y OBTENCIÓN DE MUESTRAS</title>
 </head>
 <body>
-    <iframe src="https://script.google.com/macros/s/AKfycby2FeBViliL9p62foaFmDy6mB49IZt5Feht2McoczhnoB8XcxyilBquA5rWno2OxIPd/exec" frameborder="0" width="100%" style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%;"></iframe>
+
+    <iframe id="iframeBody" frameborder="0" width="100%" style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%;"></iframe>
+
 </body>
+<script>
+  function obtenerParametroDeURL(nombreParametro) {
+    const queryString = window.location.search;
+    const parametros = new URLSearchParams(queryString);
+    const valorParametro = parametros.get(nombreParametro);
+    return valorParametro;
+}
+
+function cambiarSrcIframeSegunParametro() {
+  const urlApp = `https://script.google.com/macros/s/AKfycbxs8J_-J6WiMNBLgc2X39DI_1djRdlFf07t42DZDj42RaaQEiQZJnI8tfMm9lNM2mzo/exec`;
+  const urlLogin = `https://script.google.com/macros/s/AKfycby2FeBViliL9p62foaFmDy6mB49IZt5Feht2McoczhnoB8XcxyilBquA5rWno2OxIPd/exec`; 
+    const page = obtenerParametroDeURL('p');
+    const user = obtenerParametroDeURL('u');
+    const iframe = document.getElementById('iframeBody');
+    const pages = ["Home", "2darecepcion-Subpage", "Digitacion-page", "Entrega-page", "BandejaSalidaROM", "Rechazos-page", "Consulta-Subpage", "BusquedaMasiva-Subpage", "FOR284", "FOR027"]
+    if (pages.includes(page)) {
+        iframe.src = `${urlApp}?p=${page}&u=${user}`; 
+        ocultarParametros();
+    } else {
+      iframe.src = urlLogin; 
+        console.log('No se proporcionó ningún parámetro válido, se redirege al login.');
+        ocultarParametros();
+    }
+}
+
+window.addEventListener('DOMContentLoaded', cambiarSrcIframeSegunParametro);
+
+
+function ocultarParametros() {
+    if (window.history.replaceState && window.location.search) {
+        let nuevaUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.replaceState({}, document.title, nuevaUrl);
+    }
+}
+
+</script>
+
 </html>
