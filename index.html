@@ -21,14 +21,13 @@
 }
 
 function cambiarSrcIframeSegunParametro() {
-  const urlApp = `https://script.google.com/macros/s/AKfycbxs8J_-J6WiMNBLgc2X39DI_1djRdlFf07t42DZDj42RaaQEiQZJnI8tfMm9lNM2mzo/exec`;
+  const urlApp = `https://script.google.com/macros/s/AKfycbwq3N22NRluo4zQA5_bXShk1dAzlJ_v-0EcTQFJeat5ECcxhkEnnAxNHOMhV3lVbIVI/exec`;
   const urlLogin = `https://script.google.com/macros/s/AKfycby2FeBViliL9p62foaFmDy6mB49IZt5Feht2McoczhnoB8XcxyilBquA5rWno2OxIPd/exec`; 
     const page = obtenerParametroDeURL('p');
     const user = obtenerParametroDeURL('u');
     const iframe = document.getElementById('iframeBody');
-    const pages = ["Home", "2darecepcion-Subpage", "Digitacion-page", "Entrega-page", "BandejaSalidaROM", "Rechazos-page", "Consulta-Subpage", "BusquedaMasiva-Subpage", "FOR284", "FOR027"]
-    if (pages.includes(page)) {
-        iframe.src = `${urlApp}?p=${page}&u=${user}`; 
+    if (page === "App") {
+        iframe.src = `${urlApp}?u=${user}`; 
         ocultarParametros();
     } else {
       iframe.src = urlLogin; 
