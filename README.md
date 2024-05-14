@@ -14,8 +14,11 @@ Para evitar los anuncios de Google sobre el creador de la aplicación, es posibl
 
 1. Clona este repositorio en tu máquina local o en el servidor de hosting.
 2. Configura tu Aplicación de AppScript para manejar las solicitudes HTTP y autenticar usuarios mediante parámetros en la URL.
-3. Reemplaza las rutas URL de los Iframes con las rutas de tus implementaciones AppScript.
-4. Accede a la aplicación a través del servidor y utiliza el archivo `index.html` para navegar por las vistas del aplicativo.
+3. Reemplaza las rutas URL de los Iframes con las rutas de tus implementaciones AppScript o agrega mas rutas a la función si es necesario. ( en este caso solo le he creado dos apps en appScript uno q maneja la logica de autenticacion del login y otra que es el home del aplicativo)
+    const urlApp = `tu_URL`;
+    const urlLogin = `tu_URL`;
+5. Modifica el title del aplicativo.
+6. Accede a la aplicación a través del servidor y utiliza el archivo `index.html` para navegar por las vistas del aplicativo
 
 ## Contribución
 
